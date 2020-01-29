@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;overflow-y: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="padding-top:20px;width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"><i class="fa fa-cubes" style="font-size: 26px;margin-left: 1%;margin-right: 0.5%;display: flex;"></i><a class="navbar-brand" href="#" style="font-family: Lato, sans-serif;display: flex;">Lex</a></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;">
+            <div class="col-12" style="height: 100%;padding-right: 0px !important;padding-left: 10% !important;margin-top: 100px;">
+                <div style="height: 130px;">
+                </div>
+
+                <div style="height:52px">
+                    <div style="vertical-align:middle;display:inline-block;margin-right:30px">
+                        <h1 style="margin:0;vertical-align: middle;font-weight:700;font-family: Lato, sans-serif;font-size:40px">Signup</h1>
+                    </div>
+                 <!--    <div style="margin:0;vertical-align:bottom;display:inline-block;font-family: Lato, sans-serif">
+                        <p onclick="loginSubmit()" id="yeet-9" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position:relative;vertical-align:middle">Continue</p> 
+                    </div>    -->                     
+                </div>
+                
+                <form method="post" id="form-submit" enctype="multipart/form-data">
+                    <div style="display:inline-block">
+                        <p style="margin: 0;margin-top: 40px;font-family: Lato, sans-serif;"><strong>First Name</strong></p>
+                        <input id="first-field" name="first" type="text" style="height: 20px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top: 5px;font-size: 12px;width: 120px;box-shadow: none;">
+                        <p id="first-field-t" style="visibility:hidden;margin: 0;font-family: Lato, sans-serif;font-size:10px;color:red"><strong>Please fill in this field.</strong></p>
+                    </div>
+                    <div style="display:inline-block;margin-left: 14px;">
+                        <p style="margin: 0;margin-top: 40px;font-family: Lato, sans-serif;"><strong>Last Name</strong></p>
+                        <input id="last-field" name="last" type="text" style="height: 20px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top: 5px;font-size: 12px;width: 120px;box-shadow: none;">
+                        <p id="last-field-t" style="visibility:hidden;margin: 0;font-family: Lato, sans-serif;font-size:10px;color:red"><strong>Please fill in this field.</strong></p>
+                    </div>
+                    
+                    <div>
+                        <p style="margin-top:40px;font-family: Lato, sans-serif;"><strong>Email</strong></p>
+                        <input id="email-field" name="email" type="email" style="height: 20px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top:5px;font-size: 12px;width: 260px;">
+                        <p id="email-field-t" style="visibility:hidden;margin: 0;font-family: Lato, sans-serif;font-size:10px;color:red"><strong>Please fill in this field.</strong></p>
+                    </div>
+
+                    <div style="margin-top: 40px">
+                        <p style="margin: 0;margin-top: 40px;font-family: Lato, sans-serif;"><strong>Password</strong></p>
+                        <input id="password-field" name="password" type="password" style="height: 20px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top: 10px;font-size: 12px;width: 260px;">
+                        <p id="password-field-t" style="visibility:hidden;margin: 0;font-family: Lato, sans-serif;font-size:10px;color:red"><strong>Please fill in this field.</strong></p>
+                        <p id="password-field-N" style="visibility:hidden;margin: 0;font-family: Lato, sans-serif;font-size:10px;color:red"><strong>Must be at least 6 characters.</strong></p>
+                    </div>
+
+                    <div>
+                        <p style="margin: 0;margin-top: 20px;font-family: Lato, sans-serif;"><strong>Profile Picture</strong></p>
+                        <input id="img-field" id="image-sub" name="img" type="file" accept="image/*" style="display:inline-block;height: 20px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top: 5px;font-size: 12px;width: 190px;box-shadow: none;">
+                        <p onclick="loginSubmit()" id="yeet-9" style="display:inline-block;width:75px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 15px;cursor: pointer;position:relative;vertical-align:middle">Continue</p>
+                        <p id="img-field-t" style="visibility:hidden;margin: 0;font-family: Lato, sans-serif;font-size:10px;color:red"><strong>Profile picture required.</strong></p>
+
+                    </div>
+                     
+                </form>
+                
+                <p style="margin: 0;margin-top: 40px;font-family: Lato, sans-serif;font-size: 10px;color:red">{{msg}}</p>
+                <p style="margin: 0;margin-top: 10px;font-family: Lato, sans-serif;font-size: 10px;">Already have an account? Login&nbsp;<a style="color:black" href="{{ url_for('login') }}"><strong>here</strong></a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function doubleCheck(){
+            var num = 0;
+            console.log(document.getElementById("email-field").value)
+
+            if (document.getElementById("first-field").value == ''){
+                document.getElementById("first-field-t").style.visibility = "visible";
+                num = 1;
+            }
+            if (document.getElementById("last-field").value == ''){
+                document.getElementById("last-field-t").style.visibility = "visible";
+                num = 1;
+            }
+            if (document.getElementById("email-field").value == ''){
+                document.getElementById("email-field-t").style.visibility = "visible";
+                num = 1;
+            }
+            if (document.getElementById("password-field").value == ''){
+                document.getElementById("password-field-t").style.visibility = "visible";
+                num = 1;
+            }  
+            if (document.getElementById("img-field").value == ''){
+                document.getElementById("img-field-t").style.visibility = "visible";
+                num = 1;
+            }  
+            if (document.getElementById("password-field").value.length < 6){
+                console.log(1);
+                document.getElementById("password-field-N").style.visibility = "visible";
+                num = 1;
+            }
+
+            return num
+        }
+
+        function loginSubmit(){
+            if (doubleCheck() == 1){
+                console.log('please fill in fields');
+                return
+            }
+
+            else{
+                document.getElementById('form-submit').submit();
+            }
+        }
+
+    </script>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

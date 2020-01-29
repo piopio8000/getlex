@@ -1,0 +1,26 @@
+#runtime: python37
+#api_version: 1
+#threadsafe: true
+
+#libraries:
+#- name: ssl
+#  version: latest
+
+#handlers:
+#- url: /static
+#  static_dir: static
+#- url: /.*
+#  script: main.app
+
+#entrypoint: gunicorn -b :$PORT main:app --timeout 3600
+
+runtime: python37
+instance_class: F4_1G
+
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  script: auto
+
+entrypoint: gunicorn -b :$PORT main:app --timeout 3600

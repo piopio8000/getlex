@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;overflow-y: hidden !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;"><canvas style="position:absolute;width:100%;height:100%" id="my-canvas"></canvas>
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 2%;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+            <a style="color:black" href="{{ url_for('follow_people',user=user) }}"><p id="yeet-9" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: rgb(3,168,124);color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;margin-left: 11px;">Continue to Lex</p></a>
+        </div>
+    </nav>
+
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 6%;margin-left: 10%;">
+        <div class="container" style="display:block">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+
+            <p style="vertical-align: middle;font-family: Lato, sans-serif;font-size: 13px;text-align: left;"><strong>Paste the URL to add that channel / person to your daily updates.</strong><br>Each person will require their own unique webhook URL, so repeat the last steps for each recipient.</p>
+        </div>
+    </nav>
+
+
+<!-- <p style="vertical-align: middle;font-family: Lato, sans-serif;font-size: 25px;text-align: left;width:200px"><strong>Now, paste that URL to add that channel / person to your daily updates.</strong><br>Each person will require their own unique webhook URL.</p> -->
+
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="margin-right: 60px;">
+            <div class="col-5" style="margin-left: 13%;">
+                <div style="height: 25%;"></div>
+
+                <div id="success" style="margin: auto;width: 200px;background-color: #ffffff;border-radius: 10px 10px 10px 10px;height: 40px;">
+
+                    <p style="vertical-align: middle;font-family: Lato, sans-serif;font-size: 25px;text-align: left;"><strong>Add friend</strong></p>
+                    <p style="margin: 0;font-family: Lato, sans-serif;"><strong>Name</strong></p><input id="channel-in" type="email" style="height: 15px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top: 10px;font-size: 12px;width: 200px;"><p id="channel-msg" style="display:none;color:#a82103;font-size:11px">Please input recipent name.</p>
+                    <p style="margin: 0;font-family: Lato, sans-serif;margin-top: 20px;"><strong>Webhook URL</strong><a style="color:black" href="{{url_for('step1',user=user)}}"><i class="la la-question-circle" style="margin-left: 5px;font-size: 15px;cursor: pointer;"></i></a></p><input id="url-in" type="email" style="height: 15px;border-top: none;border-left: none;border-right: none;padding: 0;padding-bottom: 2px;padding-left: 1px;margin-top: 10px;font-size: 12px;width: 200px;"><p id="url-msg" style="display:none;color:#a82103;font-size:11px">Please input a webhook URL.</p>
+                    <p onclick="addFriend()"
+                        id="add-friend" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;color: black;border: 1px solid #black;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;display: block;width: 77px;margin-top: 15px;float: left;">Add Friend</p>
+                </div>
+            </div>
+            <div class="col-5">
+                <div style="height: 25%;"></div>
+                <div id="success" style="margin: auto;width: 240px;background-color: #ffffff;border-radius: 10px 10px 10px 10px;height: 30px;">
+                    <p style="vertical-align: middle;font-family: Lato, sans-serif;font-size: 25px;text-align: left;"><strong>Added friends</strong></p>
+                    <div style="height: 40px;">
+                        
+                        <div id="channel-list"></div>
+
+<!--                         <div id="friend" style="float: left;padding-right: 10px;width: 160px;"><img src="../assets/img/filler_profile_pic.jpg" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;display: inline-block;">
+                            <p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"><strong>Yaya turer&nbsp;</strong></p>
+                            <p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"></p><i class="la la-remove" style="cursor: pointer;float: right;margin: 0 auto;display: block;margin-top: 15px;"></i></div>
+                        <div id="friend" style="float: left;padding-right: 10px;width: 160px;"><img src="../assets/img/filler_profile_pic.jpg" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;display: inline-block;">
+                            <p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"><strong>Yaya turer&nbsp;</strong></p>
+                            <p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"></p><i class="la la-remove" style="cursor: pointer;float: right;margin: 0 auto;display: block;margin-top: 15px;"></i></div>
+                        <div id="friend" style="float: left;padding-right: 10px;width: 160px;"><img src="../assets/img/filler_profile_pic.jpg" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;display: inline-block;">
+                            <p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"><strong>Yaya turer&nbsp;</strong></p>
+                            <p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"></p><i class="la la-remove" style="cursor: pointer;float: right;margin: 0 auto;display: block;margin-top: 15px;"></i></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form id="form-submit" method="post">
+        <input id="channel-name" name="channel" style="display:none">
+        <input id="webhook-url" name="url" style="display:none">
+        <input id="remove" name="remove" style="display:none">
+    </form>
+
+
+    <style>
+        #add-friend:hover{
+            background-color: #f7f7f7 !important;
+        }
+
+        #friend:hover{
+            background-color: #f7f7f7 !important;
+        }
+    </style>
+
+    <script>
+        function html_unescape(s) {
+            var div = document.createElement("div");
+            div.innerHTML = s;
+            document.getElementById('channel-list').innerHTML = div.textContent || div.innerText; // IE is different
+        }
+
+        html_unescape('{{channel_list}}');
+
+
+        function removeChannel(event){
+            document.getElementById('remove').value = event.target.id;
+            document.getElementById('form-submit').submit();
+        }
+
+        function addFriend(){
+            var channel = document.getElementById('channel-in').value;
+            var url = document.getElementById('url-in').value;
+            var count = 0;
+            if (channel.length < 1){
+                document.getElementById('channel-msg').style.display = "block";
+                count = 1;
+            }
+            if (url.includes('https://hooks.slack.com/services/') == false){
+                document.getElementById('url-msg').style.display = "block";
+                count = 1;
+            }
+            if (count == 0){
+                document.getElementById('channel-name').value = channel;
+                document.getElementById('webhook-url').value = url;
+                document.getElementById('form-submit').submit();
+            }
+        }
+
+    </script>
+
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

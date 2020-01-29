@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;overflow-y: hidden !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;"><canvas style="position:absolute;width:100%;height:100%" id="my-canvas"></canvas>
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 2%;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+            <a style="color:white" href="{{url_for('choose_integrate',user=user)}}"><p id="yeet-10" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #a82103;color: white;border: 1px solid #a82103;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Cancel</p></a>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;min-width: 100% !important;margin-left: 0px;">
+            <div class="col-12" style="margin-right: 50px;">
+                <div style="height: 20%;"></div>
+                <div id="success" style="margin: auto;width: 350px;background-color: #ffffff;border-radius: 10px 10px 10px 10px;height: 40px;">
+                    <p style="margin-left: 8px;vertical-align: middle;font-family: Lato, sans-serif;font-size: 15px;text-align: center;margin: 0;margin-top: 5px;">Sign into your slack account to continue.</p>
+                    <p style="margin-left: 8px;vertical-align: middle;font-family: Lato, sans-serif;font-size: 15px;text-align: center;margin: 0;margin-top: 7px;">Click "<strong>open API</strong>" once you've confirmed your email.</p>
+                    <p style="margin-left: 8px;vertical-align: middle;font-family: Lato, sans-serif;font-size: 15px;text-align: center;margin: 0;margin-top: 7px;">Return to this page afterwards.</p>
+                </div><img src="https://firebasestorage.googleapis.com/v0/b/getlex-5b86d.appspot.com/o/integrate%2Fnot_logged_in_2.jpg?alt=media&token=b33cdfb3-c788-4911-ad5a-6f1f9ee744a7" style="width: 60%;border: 1px solid transparent;margin: 0 auto;display: block;margin-top: 40px;">
+                <a style="color:white" onclick="openStep4()" target="blank"><p id="yeet-9" style="width: 135px;border: 1px solid black;padding-left: 10px;padding-right: 10px;padding-top: 7px;padding-bottom: 7px;font-family: Lato, sans-serif;background-color: rgb(3,168,124);color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 25px;cursor: pointer;flex: 0 0 auto;margin: 0 auto;margin-top: 30px;"><strong>Open</strong> <strong>API</strong></p></a>
+            </div>
+            <div class="col-5" id="canvas-back" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;margin-left: 50px;"></div>
+        </div>
+    </div>
+
+    <form id="form-submit" method="post">
+    </form>
+
+    <script>
+        function openStep4() {
+            url = "https://api.slack.com/apps?new_app=1"
+            var win = window.open(url, '_blank');
+            document.getElementById('form-submit').submit();
+        }
+    </script>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

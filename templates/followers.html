@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="padding-top:20px;width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;">
+        <div class="container">
+            <a style="color:black" href="{{ url_for('write',user=user) }}"><div style="width: auto;display: flex;cursor: pointer;"><i class="fa fa-cubes" style="font-size: 26px;margin-left: 1%;margin-right: 0.5%;display: flex;"></i><a class="navbar-brand" href="{{ url_for('write',user=user) }}" style="font-family: Lato, sans-serif;display: flex;">Lex</a></div></a>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+
+            <a href="{{ url_for('write',user=user) }}"><p id="hover-1" onclick="onClickStick(event)" onmouseover="borderChangeOn(event)" onmouseleave="borderChangeOff(event)" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #ffffff;color: black;border: 1px solid #ffffff;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Write</p></a>
+            
+            <div style="width:5px"></div>
+            
+            <a href="{{ url_for('read',user=user) }}"><p id="hover-2" onclick="onClickStick(event)" onmouseover="borderChangeOn(event)" onmouseleave="borderChangeOff(event)" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #ffffff;color: black;border: 1px solid #ffffff;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Read</p></a>
+
+            <div style="width:5px"></div>
+
+            <a href="{{ url_for('notifications',user=user) }}"><p id="hover-3" onclick="onClickStick(event)" onmouseover="borderChangeOn(event)" onmouseleave="borderChangeOff(event)" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #ffffff;color: black;border: 1px solid #ffffff;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Notifications</p></a>
+            
+            <div style="width:7px"></div>
+
+            <style>
+                .arrow-up {
+                    width: 0; 
+                    height: 0; 
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-bottom: 5px solid #000000;
+                    margin-top: -13px;
+                    position:absolute;
+                    margin-left:42%;
+                    margin-right:42%;
+                }
+
+                #following:hover{
+                    text-decoration:underline;
+                }
+
+                #followers:hover{
+                    text-decoration:underline;
+                }
+            </style>
+
+            <div id="slide-down" style="display:none;">
+                <div class="arrow-up" style="left:54%;top:58px;"></div>
+                <div style="box-shadow: 0px 0px 7px 3px rgba(230,230,230,0.2); border:1px solid rgb(230,230,230); position:absolute;height:200px;width:200px;background-color:white;border-radius:5px 5px 5px 5px;left:87.5%;top:50px;">
+                    <div style="height:30px"></div>
+                    <div style="display:inline-block;">
+                        <a style="color:black;margin-left:20px;"><img
+                        src="{{img_link}}" style="object-fit: cover;border-radius: 50%;margin-right: 1%;width: 50px;height: 50px;line-height: 30px;cursor: auto;"></a>
+                    </div>
+                    <div style="vertical-align:middle;display:inline-block;margin-left: 11px">
+                        <p style="font-weight:700;font-size: 15px;font-family: Lato, sans-serif;margin:0;margin-bottom:5px">{{full_name}}</p>
+                        <a style="color:#242729" href="{{ url_for('followers',user=user)}}"><p id="followers" style="cursor:pointer;font-weight:400;font-size: 11px;font-family: Lato, sans-serif;margin:0;">Followers: <b>{{follow_count}}</b></p></a>
+                        <a style="color:#242729" href="{{ url_for('following',user=user)}}"><p id="following" style="cursor:pointer;font-weight:400;font-size: 11px;font-family: Lato, sans-serif;margin:0;margin-top: 2px;">Following: <b>{{following_count}}</b></p></a>
+                    </div>
+                    <hr style="width:85%;background-color:rgb(230,230,230)"></hr>
+                    <div style="margin-top:20px;margin-left:20px">
+                        <a style="color:#242729" href="{{ url_for('archive',user=user) }}"><p style="cursor:pointer;font-weight:400;font-size: 12px;font-family: Lato, sans-serif;margin:0;margin-top:15px;margin-bottom:15px">Sent Updates (<b>{{count}}</b>)</p></a>
+                        <a style="color:#242729" href="{{ url_for('search',user=user) }}"><p style="cursor:pointer;font-weight:400;font-size: 12px;font-family: Lato, sans-serif;margin:0;margin-top:15px;margin-bottom:15px">Add Friend</p></a>
+                        <a style="color:#242729" href="{{ url_for('invite',user=user) }}"><p style="cursor:pointer;font-weight:400;font-size: 12px;font-family: Lato, sans-serif;margin:0;margin-top:15px;margin-bottom:15px">Invite Friend</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <a onclick="showSlideDown()" style="color:black;margin-left:0%;margin-right:1%"><img
+                src="{{img_link}}" style="object-fit: cover;border-radius: 50%;margin-right: 1%;width: 30px;height: 30px;line-height: 30px;cursor: pointer;">
+            </a>
+
+
+            <script>
+                var changer = 1;
+
+                function borderChangeOn(event){
+                    if (changer == 1){
+                        document.getElementById(event.target.id).style.borderBottom = "3px solid #03a87c";
+                    }
+                }
+                function borderChangeOff(event){
+                    if (changer == 1){
+                        document.getElementById(event.target.id).style.borderBottom = "3px solid #ffffff";
+                    }
+                }
+
+                function onClickStick(event){
+                    window.changer = 0;
+                    document.getElementById(event.target.id).style.borderBottom = "3px solid #03a87c";
+                }
+
+                function showSlideDown(){
+                    if (document.getElementById('slide-down').style.display == "none"){
+                        document.getElementById('slide-down').style.display = "block"
+                    }
+                    else{
+                        document.getElementById('slide-down').style.display = "none"
+                    }
+                }
+            </script>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;">
+            <div class="col-12" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;">
+                <div style="height: 130px;"></div>
+
+<!--                 <p id="yeet-9" onclick="formSubmit()" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Load More</p> -->
+
+                <p style="font-weight:700;font-family: Lato, sans-serif;font-size:30px;margin-bottom:30px">{{follow_count}} followers</p>
+                <hr style="margin-bottom:20px"></hr>
+                <div style="display:none" id="msg">
+                    <p style="font-family: Lato, sans-serif;font-size:14px">You don't have any followers. Click <a style="color:#03a87c" href="{{ url_for('search',user=user) }}"><b>here</b></a> to add friends!</p>
+                </div>
+
+
+<!--                 <div style="cursor: pointer;margin-top: 25px;margin-bottom: 25px;">
+                    <div style="float: left;"><img src="dd" style="object-fit: cover;width: 50px;height: 50px;line-height: 30px;cursor: pointer;border-radius: 5px;">
+                    </div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 2px;font-family: Lato, sans-serif;margin-top: 3px;"><strong>HH</strong></p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">Reply rate:</p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">Upvote rate:</p>
+                    </div>
+                    <div style="display: inline-block;padding-left: 5px;">
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">N/A</p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">N/A</p>
+                    </div>
+                    <div style="vertical-align:middle;display:inline-block;height:50px;margin-left:20px">
+                        <p onmouseover="darkRed(event)" onmouseleave="lightRed(event)" onclick="formSubmit()" id="{}" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #a82103;color: white;border: 1px solid #03a87c;border-radius: 4px 4px 4px 4px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Remove</p>
+                    </div>
+                </div> -->
+
+                <div style="margin-bottom:200px" id="templist"></div>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" id="form-submit">
+        <input style="display:none" id="remove-user" name="removed">
+    </form>
+
+    <script>
+
+        function html_unescape(s) {
+            var div = document.createElement("div");
+            div.innerHTML = s;
+            document.getElementById('templist').innerHTML = div.textContent || div.innerText; // IE is different
+        }
+
+        html_unescape('{{templist}}');
+
+        function isMsgTrue(msg){
+            if (msg == 'true'){
+                document.getElementById('msg').style.display = "block";
+            }
+        }
+
+        isMsgTrue('{{msg}}');
+
+        function darkRed(event){
+            document.getElementById(event.target.id).style.backgroundColor = "rgb(156,31,3)";
+            document.getElementById(event.target.id).style.borderColor = "rgb(156,31,3)";
+        }
+
+        function lightRed(event){
+            document.getElementById(event.target.id).style.backgroundColor = "rgb(168,33,3)";
+            document.getElementById(event.target.id).style.borderColor = "rgb(168,33,3)";
+        }
+
+        function formSubmit(event){
+            document.getElementById('remove-user').value = event.target.id;
+            document.getElementById('form-submit').submit();
+        }
+
+    </script>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

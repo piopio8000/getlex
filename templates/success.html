@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+
+<body style="height: 100% !important;"><canvas style="position:absolute;width:100%;height:100%" id="my-canvas"></canvas>
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 2%;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;">
+            <div class="col"></div>
+            <div class="col-12" id="canvas-back" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;margin-left: 0%;">
+                <div style="height: 184px;"></div>
+                <div id="success" style="margin: auto;width: 21%;background-color: #ffffff;padding-top: 20px;">
+                    <p style="font-weight:700;margin-bottom: 0px;font-family: Lato, sans-serif;font-size: 23px;display: block;margin-left: auto;margin-right: auto;width: 80%;">Successfuly sent!</p>
+                    <div style="cursor: pointer;margin-top: 20px;margin-bottom: 25px;">
+                        <div style="float: left;"><img src="{{img_src}}" style="object-fit: cover;width: 150px;height: 150px;line-height: 30px;border-radius: 5px;margin: auto;display: block;margin: auto;width: 80%;border: 0px solid #03a87c;cursor: auto !important;"></div>
+                        <div style="padding-left: 12px;">
+                          <a style="color:black" href="{{ url_for('archive',user=user) }}"><p id="sent-updates" style="margin-bottom: 2px;font-family: Lato, sans-serif;margin-top: 10px;display: block;padding-top: 14px !important;margin-left: auto;margin-right: auto;width: 51%;">Sent updates:<strong>&nbsp; {{sent}}</strong></p></a>
+                        </div>
+
+                    <a style="color:white" href="{{ url_for('write',user=user) }}"><p id="yeet-9" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: rgb(3,168,124);color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin-left: 11px;width: 40px;display: block;margin: 0 auto;margin-top: 20px;">Back</p></a>
+                    <div style="display: inline-block;padding-left: 5px;"></div>
+
+                    <style>
+                      #sent-updates:hover{
+                        text-decoration: underline;
+                      }
+                    </style>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div><script>
+function ConfettiGenerator(params) {
+  //////////////
+  // Defaults
+  var appstate = {
+    target: 'confetti-holder', // Id of the canvas
+    max: 80, // Max itens to render
+    size: 1, // prop size
+    animate: true, // Should aniamte?
+    props: ['circle', 'square', 'triangle', 'line'], // Types of confetti
+    colors: [[165,104,246],[230,61,135],[0,199,228],[253,214,126]], // Colors to render confetti
+    clock: 25, // Speed of confetti fall
+    interval: null, // Draw interval holder
+    rotate: false, // Whenever to rotate a prop
+    width: window.innerWidth, // canvas width (as int, in px)
+    height: window.innerHeight // canvas height (as int, in px)
+  };
+
+  //////////////
+  // Setting parameters if received
+  if(params) {
+    if(params.target)
+      appstate.target = params.target;
+    if(params.max)
+      appstate.max = params.max;
+    if(params.size)
+      appstate.size = params.size;
+    if(params.animate !== undefined && params.animate !== null)
+      appstate.animate = params.animate;
+    if(params.props)
+      appstate.props = params.props;
+    if(params.colors)
+      appstate.colors = params.colors;
+    if(params.clock)
+      appstate.clock = params.clock;
+    if(params.width)
+      appstate.width = params.width;
+    if(params.height)
+      appstate.height = params.height;
+    if(params.rotate !== undefined && params.rotate !== null)
+      appstate.rotate = params.rotate;
+  }
+
+  //////////////
+  // Properties
+  var cv = document.getElementById(appstate.target);
+  var ctx = cv.getContext("2d");
+  var particles = [];
+
+  //////////////
+  // Random helper (to minimize typing)
+  function rand(limit, floor) {
+    if(!limit) limit = 1;
+    var rand = Math.random() * limit;
+    return !floor ? rand : Math.floor(rand);
+  }
+
+  var totalWeight = appstate.props.reduce(function(weight, prop) {
+    return weight + (prop.weight || 1);
+  }, 0);
+  function selectProp() {
+    var rand = Math.random() * totalWeight;
+    for (var i = 0; i < appstate.props.length; ++i) {
+      var weight = appstate.props[i].weight || 1;
+      if (rand < weight) return i;
+      rand -= weight;
+    }
+  }
+
+  //////////////
+  // Confetti particle generator
+  function particleFactory() {
+    var prop = appstate.props[selectProp()];
+    var p = {
+      prop: prop.type ? prop.type : prop, //prop type
+      x: rand(appstate.width), //x-coordinate
+      y: rand(appstate.height), //y-coordinate
+      src: prop.src,
+      radius: rand(4) + 1, //radius
+      size: prop.size,
+      rotate: appstate.rotate,
+      line: Math.floor(rand(65) - 30), // line angle
+      angles: [rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2], // triangle drawing angles
+      color: appstate.colors[rand(appstate.colors.length, true)], // color
+      rotation: rand(360, true) * Math.PI/180,
+      speed: rand(appstate.clock / 7) + (appstate.clock / 30)
+    };
+
+    return p;
+  }
+
+  //////////////
+  // Confetti drawing on canvas
+  function particleDraw(p) {
+    var op = (p.radius <= 3) ? 0.4 : 0.8;
+
+    ctx.fillStyle = ctx.strokeStyle = "rgba(" + p.color + ", "+ op +")";
+    ctx.beginPath();
+
+    switch(p.prop) {
+      case 'circle':{
+        ctx.moveTo(p.x, p.y);
+        ctx.arc(p.x, p.y, p.radius * appstate.size, 0, Math.PI * 2, true);
+        ctx.fill();
+        break;  
+      }
+      case 'triangle': {
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + (p.angles[0] * appstate.size), p.y + (p.angles[1] * appstate.size));
+        ctx.lineTo(p.x + (p.angles[2] * appstate.size), p.y + (p.angles[3] * appstate.size));
+        ctx.closePath();
+        ctx.fill();
+        break;
+      }
+      case 'line':{
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + (p.line * appstate.size), p.y + (p.radius * 5));
+        ctx.lineWidth = 2 * appstate.size;
+        ctx.stroke();
+        break;
+      }
+      case 'square': {
+        ctx.save();
+        ctx.translate(p.x+15, p.y+5);
+        ctx.rotate(p.rotation);
+        ctx.fillRect(-15 * appstate.size,-5 * appstate.size,15 * appstate.size,5 * appstate.size);
+        ctx.restore();
+        break;
+      }
+      case 'svg': {
+        ctx.save();
+        var image = new window.Image();
+        image.src = p.src;
+        var size = p.size || 15;
+        ctx.translate(p.x + size / 2, p.y + size / 2);
+        if(p.rotate)
+          ctx.rotate(p.rotation);
+        ctx.drawImage(image, -(size/2) * appstate.size, -(size/2) * appstate.size, size * appstate.size, size * appstate.size);
+        ctx.restore();
+        break;
+      }
+    }
+  }
+  
+  //////////////
+  // Public itens
+  //////////////
+
+  //////////////
+  // Clean actual state
+  var _clear = function() {
+    appstate.animate = false;
+    clearInterval(appstate.interval);
+    
+    requestAnimationFrame(function() {
+    	ctx.clearRect(0, 0, cv.width, cv.height);
+      var w = cv.width;
+      cv.width = 1;
+      cv.width = w;
+    });
+  }
+
+  //////////////
+  // Render confetti on canvas
+  var _render = function() {
+      //canvas dimensions
+      cv.width = appstate.width;
+      cv.height = appstate.height;
+      particles = [];
+
+      for(var i = 0; i < appstate.max; i ++)
+        particles.push(particleFactory());
+      
+      function draw(){
+        ctx.clearRect(0, 0, appstate.width, appstate.height);
+
+        for(var i in particles)
+          particleDraw(particles[i]);
+        
+        update();
+
+        //animation loop
+        if(appstate.animate) requestAnimationFrame(draw);
+      }
+
+      function update() {
+
+        for (var i = 0; i < appstate.max; i++) {
+          var p = particles[i];
+          if(appstate.animate)
+            p.y += p.speed;
+
+          if (p.rotate)
+            p.rotation += p.speed / 35;
+          
+          if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
+            particles[i] = p; 
+            particles[i].x = rand(appstate.width, true);
+            particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
+          }
+        }
+      }
+
+      return requestAnimationFrame(draw);
+  };
+
+  return {
+    render: _render,
+    clear: _clear
+  }
+}
+
+var confettiSettings = { target: 'my-canvas' };
+var confetti = new ConfettiGenerator(confettiSettings);
+confetti.render();
+</script>
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

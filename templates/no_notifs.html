@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="padding-top:20px;width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;">
+        <div class="container">
+            <a style="color:black" href="{{ url_for('write',user=user) }}"><div style="width: auto;display: flex;cursor: pointer;"><i class="fa fa-cubes" style="font-size: 26px;margin-left: 1%;margin-right: 0.5%;display: flex;"></i><a class="navbar-brand" href="{{ url_for('write',user=user) }}" style="font-family: Lato, sans-serif;display: flex;">Lex</a></div></a>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+
+            <a href="{{ url_for('write',user=user) }}"><p id="hover-1" onclick="onClickStick(event)" onmouseover="borderChangeOn(event)" onmouseleave="borderChangeOff(event)" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #ffffff;color: black;border: 1px solid #ffffff;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Write</p></a>
+            
+            <div style="width:5px"></div>
+            
+            <a href="{{ url_for('read',user=user) }}"><p id="hover-2" onclick="onClickStick(event)" onmouseover="borderChangeOn(event)" onmouseleave="borderChangeOff(event)" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #ffffff;color: black;border: 1px solid #ffffff;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Read</p></a>
+
+            <div style="width:5px"></div>
+
+            <a href="{{ url_for('notifications',user=user) }}"><p id="hover-3" onclick="onClickStick(event)" onmouseover="borderChangeOn(event)" onmouseleave="borderChangeOff(event)" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #ffffff;color: black;border: 1px solid #ffffff;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Notifications</p></a>
+            
+            <div style="width:7px"></div>
+
+            <a style="color:black;margin-left:0%;margin-right:1%" href="{{ url_for('profile',user=user) }}"><img
+                src="{{img_link}}" style="object-fit: cover;border-radius: 50%;margin-right: 1%;width: 30px;height: 30px;line-height: 30px;cursor: pointer;"></a>
+
+            <script>
+                var changer = 1;
+
+                function borderChangeOn(event){
+                    if (changer == 1){
+                        document.getElementById(event.target.id).style.borderBottom = "3px solid #03a87c";
+                    }
+                }
+                function borderChangeOff(event){
+                    if (changer == 1){
+                        document.getElementById(event.target.id).style.borderBottom = "3px solid #ffffff";
+                    }
+                }
+
+                function onClickStick(event){
+                    window.changer = 0;
+                    document.getElementById(event.target.id).style.borderBottom = "3px solid #03a87c";
+                }
+            </script>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;">
+            <div class="col-12" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;">
+                <div style="height: 130px;"></div>
+
+                <div>
+                	<h1 style="font-family: Lato, sans-serif;margin-top:100px">You don't have any notifications yet.</h1>
+                </div>
+
+
+
+<!--                 <div>
+                    <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin: 0px;margin-top: 20px;">12/17/2019</p><hr style="margin-top:0px;background-color:#FC5783">
+</div>
+                <div style="cursor: pointer;">
+                    <div style="float: left;"><img src="{{ url_for('static',filename='img/luke.png') }}" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 3px;font-family: Lato, sans-serif;"><strong>Luke Piette</strong></p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;">Yo yo what was the thing you were saying about tryint to change the world or something idk I kinda...</p>
+                    </div>
+                </div>
+                <div>
+                    <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin: 0px;margin-top: 20px;">12/17/2019</p><hr style="margin-top:0px;background-color:#FC5783">
+</div>
+                <div style="cursor: pointer;">
+                    <div style="float: left;"><img src="{{ url_for('static',filename='img/luke.png') }}" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 3px;font-family: Lato, sans-serif;"><strong>Luke Piette</strong></p>
+                        <p style="max-width: 300px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;">Na dw bout it</p>
+                    </div>
+                </div>
+                <div style="cursor: pointer;">
+                    <div style="float: left;"><img src="{{ url_for('static',filename='img/luke.png') }}" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 3px;font-family: Lato, sans-serif;"><strong>Luke Piette</strong></p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;">Yo yo what was the thing you were saying about tryint to change the world or something idk I kinda...</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin: 0px;margin-top: 20px;">12/17/2019</p><hr style="margin-top:0px;">
+</div>
+                <div style="cursor: pointer;">
+                    <div style="float: left;"><img src="{{ url_for('static',filename='img/luke.png') }}" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 3px;font-family: Lato, sans-serif;"><strong>Luke Piette</strong></p>
+                        <p style="max-width: 300px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;">Na dw bout it</p>
+                    </div>
+                </div>
+                <div style="cursor: pointer;">
+                    <div style="float: left;"><img src="{{ url_for('static',filename='img/luke.png') }}" style="object-fit: cover;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 3px;font-family: Lato, sans-serif;"><strong>Luke Piette</strong></p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;">Yo yo what was the thing you were saying about tryint to change the world or something idk I kinda...</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function html_unescape(s) {
+            var div = document.createElement("div");
+            div.innerHTML = s;
+            document.getElementById('notifs-list').innerHTML = div.textContent || div.innerText; // IE is different
+        }
+
+        html_unescape('{{notifs}}');
+    </script>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

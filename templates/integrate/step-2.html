@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;overflow-y: hidden !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;"><canvas style="position:absolute;width:100%;height:100%" id="my-canvas"></canvas>
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 2%;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+            <a style="color:white" href="{{url_for('choose_integrate',user=user)}}"><p id="yeet-10" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #a82103;color: white;border: 1px solid #a82103;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Cancel</p></a>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 0;margin-top: 6%;">
+        <div class="container">
+            <div style="margin: 0 auto;display: block;">
+                <p style="margin-left: 8px;vertical-align: middle;font-family: Lato, sans-serif;font-size: 25px;text-align: center;">Where did that take you?</p>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;min-width: 100% !important;margin-left: 0px;">
+            <div class="col-5" style="margin-right: 60px;">
+                <div style="height: 25%;"></div>
+                <div id="success" style="margin: auto;width: 220px;background-color: #ffffff;border-radius: 10px 10px 10px 10px;height: 40px;">
+                    <p style="margin-left: 8px;vertical-align: middle;font-family: Lato, sans-serif;font-size: 15px;text-align: center;padding-left: 20px;">I'm here.</p>
+                </div><a style="color:black" href="{{ url_for('step3loggedout',user=user) }}"><img id="logged-out" src="https://firebasestorage.googleapis.com/v0/b/getlex-5b86d.appspot.com/o/integrate%2Fnot_logged_in.png?alt=media&token=2f698abb-3edd-40a4-8f7d-d15cb74361d6" style="width: 110%;cursor: pointer;border: 1px solid transparent;"></a></div>
+            <div class="col-5" id="canvas-back" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;margin-left: 100px;">
+                <div style="height: 25%;"></div>
+                <div id="success" style="margin: auto;width: 220px;background-color: #ffffff;border-radius: 10px 10px 10px 10px;height: 40px;">
+                    <p style="margin-left: 8px;vertical-align: middle;font-family: Lato, sans-serif;font-size: 15px;text-align: center;">I'm here.</p>
+                </div><a style="color:black" href="{{ url_for('step4',user=user) }}"><img id="logged-in" src="https://firebasestorage.googleapis.com/v0/b/getlex-5b86d.appspot.com/o/integrate%2Flogged_in.png?alt=media&token=1102c92a-5cfe-4972-a738-b7a3aba2658c" style="width: 104%;cursor: pointer;border: 1px solid transparent;"></a></div>
+        </div>
+    </div>
+
+    <style>
+        #logged-in:hover{
+            border:1px solid !important;
+        }
+
+        #logged-out:hover{
+            border:1px solid !important;
+        }
+    </style>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 2%;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+            <a style="color:black" href="{{ url_for('read',user=user) }}"><p id="yeet-9" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Continue</p></a>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;">
+            <div class="col-3" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;"></div>
+            <div class="col-6" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;">
+                <div style="height: 130px;"></div>
+                <p style="margin-bottom: 2px;font-family: Lato, sans-serif;font-size: 25px;text-align: center;padding-right: 20px;"><strong>Add friends on Lex</strong></p>
+
+                    <form method="post" id="form-submit">
+                        <input placeholder="John Smith..." name="search" type="text" style="border-top: none;border-left: none;border-right: none;height: 25px;font-size: 12px;font-family: Lato, sans-serif;padding-left: 2px;margin-bottom: 20px;width: 90%;box-shadow: none;">
+                        <i onclick="formSubmit()" class="la la-search" style="margin-left: 0.4%;font-size: 17px;cursor: pointer;"></i>
+                        
+                    </form>
+
+                    <p style="font-family: Lato, sans-serif;color:red;">{{msg}}</p>
+
+                    <div style="max-height: 60%;overflow-y: auto;width: 95%;">
+                        <div style="margin-bottom:10%;" id="search-list"></div>
+                    </div>
+
+
+             <!--            <div style="cursor: pointer;padding-top: 10px;padding-bottom: 10px;">
+                            <div style="float: left;"><img src="assets/img/Selection_053.png" style="object-fit: cover;width: 40px;height: 40px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                            <div style="display: inline-block;padding-left: 10px;">
+                                <p style="margin-bottom: 2px;font-family: Lato, sans-serif;"><strong>Luke Piette</strong></p>
+                                <p id="yeet-9" style="height: 20px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 11px;cursor: pointer;display: inline-block;margin-top: 4px;">Follow</p>
+                            </div>
+                        </div> -->
+            </div>
+            <div class="col-3" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;"></div>
+        </div>
+    </div>
+
+    <script>
+
+        var showall = "{{showall}}";
+        if (showall == "true"){
+            document.getElementById('form-submit').submit();
+        }
+
+        function html_unescape(s) {
+            var div = document.createElement("div");
+            div.innerHTML = s;
+            document.getElementById('search-list').innerHTML = div.textContent || div.innerText; // IE is different
+        }
+
+        html_unescape('{{search_users}}');
+
+        function formSubmit(){
+            document.getElementById('form-submit').submit();
+        }
+
+        function followUser(event){
+            var par1 = event.target.parentNode.id;
+            var par2 = document.getElementById(par1).parentNode.id;
+            var par3 = document.getElementById(par2).parentNode.id;
+
+
+            document.getElementById(par3).submit();
+        }
+
+    </script>
+
+
+
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+</body>
+
+</html>

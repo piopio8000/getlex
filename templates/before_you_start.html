@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+<body style="height: 100% !important;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="padding-top:20px;width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;">
+        <div class="container">
+            <a style="color:black"><div style="width: auto;display: flex;cursor: pointer;"><i class="fa fa-cubes" style="font-size: 26px;margin-left: 1%;margin-right: 0.5%;display: flex;"></i><a class="navbar-brand" style="font-family: Lato, sans-serif;display: flex;">Lex</a></div></a>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+
+            <a style="display:none;color:black;margin-right:0%" href="{{ url_for('write',user=user) }}"><i class="la la-edit" style="font-size: 20px;cursor: pointer;"></i></a>
+            <a style="display:none;color:black;margin-left:1%;margin-right:1%" href="{{ url_for('read',user=user) }}"><i class="la la-copy" style="font-size: 20px;cursor: pointer;"></i></a>
+            <a style="display:none;color:black;margin-left:0%;margin-right:1%;" href="{{ url_for('notifications',user=user) }}"><i class="la la-bell" style="font-size: 20px;cursor: pointer;"></i></a>
+            
+            <a style="display:none;color:black;margin-left:0%;margin-right:1%;" href="{{ url_for('search',user=user) }}"><i class="la la-search" style="margin-left: 1%;font-size: 17px;cursor: pointer;"></i></a>
+
+            <a style="display:none;color:black;margin-left:0%;margin-right:1%" href="{{ url_for('profile',user=user) }}"><img
+                src="{{img_link}}" style="object-fit: cover;border-radius: 50%;margin-right: 1%;width: 30px;height: 30px;line-height: 30px;cursor: pointer;"></a>
+                <p id="yeet-9" onclick="loginSubmit()" style="height: 23px;border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Continue</p>
+        </div>
+    </nav>
+
+    <form style="display:none" method="post" id="form-submit">
+    </form>
+
+    <div class="container" style="min-height: 100%;width: 100%;">
+        <div class="row" style="min-height: 100%;margin-left: 4%;">
+            <div class="col-12" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;">
+                <div style="height: 130px;"></div>
+
+                <div>
+                	<h1 style="font-family: Lato, sans-serif;margin-top:100px">Before you start...</h1>
+                    <p style="font-family: Lato, sans-serif;margin-bottom:30px" >A few things to keep in mind:</p>
+
+                    <ol style="font-family: Lato, sans-serif;list-style:decimal">
+                        <li style="font-family: Lato, sans-serif;margin:15px;line-height:16px">When you want to <b>send</b> an update or <b>reply</b> to someone elses' update, use the send button in the top right. I designed the site so there aren't any weirdly placed buttons hanging around.<br></li>
+                        <li style="font-family: Lato, sans-serif;margin:15px;line-height:16px">Formatting your update is the same as slacks'. It's all markup, which means you can do *this to bold your message* or _this to make it italic_. You can also <b>ctrl-b</b> to bold, <b>ctrl-i</b> to italicize, and <b>ctr-u</b> to underline. Right now, the site doesn't support the complete list of markup features, like creating titles (# Title) or inserting links [link](www.google.com).</li>
+                        <li style="font-family: Lato, sans-serif;margin:15px;line-height:16px">Your profile is currently open to anyone if they search for it in the app, which means anyone can follow your updates. Plus, you can't send user specific updates either, which means when you click <b>send</b>, it sends to every one who follows you. This is a major privacy issue that will be fixed soon.</li>
+                        <li style="font-family: Lato, sans-serif;margin:15px;line-height:16px">You can only upvote, downvote, or reply to peoples updates right now. In the future, a "react" button could be implemented depending on the level of user interest.</li>
+                        <li style="font-family: Lato, sans-serif;margin:15px;line-height:16px">Click the download arrow beside your update to save it as a template. There is a built in template when you start.</li>
+                    </ol>
+
+                    <p style="font-family: Lato, sans-serif;margin-top:30px" >Send me feedback at <b style="color:#0000EE">lukewpiette@gmail.com</b>  :). Be ruthless - if you hate the product please let me know how I can make it better.</p>
+
+                    <p style="font-family: Lato, sans-serif;margin-top:30px" >Click <b>continue</b> in the top right to continue.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loginSubmit(){
+            document.getElementById('form-submit').submit();
+        }
+    </script>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>

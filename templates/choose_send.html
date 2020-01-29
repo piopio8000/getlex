@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden !important;height: 100% !important;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-Clean.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/stacks.css') }}">
+</head>
+
+
+<body style="height: 100% !important;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="width: 100%;position: fixed;background-color: rgb(255,255,255);opacity: 1;z-index: 10;margin-top: 2%;">
+        <div class="container">
+            <div style="width: auto;display: flex;cursor: pointer;"></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+            <a style="color:black" href="{{ url_for('write',user=user) }}"><p id="yeet-10" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #a82103;color: white;border: 1px solid #a82103;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;">Cancel</p></a>
+            <p onclick="formSubmit()" id="yeet-9" style="border: 1px solid black;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;position: relative;flex: 0 0 auto;margin: 0 auto;margin-left:10px">Send Update</p>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 100%;width: 100%;margin-left:18%;">
+        <div class="row" style="min-height: 100%;">
+            <div class="col-6" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;margin-left: auto;margin-right: auto">
+                <div style="height: 184px;"></div>
+                <div>
+<!--                     <i id="cancel" onclick="cancelSend(event)" class="la la-remove" style="cursor:pointer;color: #a82103;font-size: 25px;margin-left: -50px;vertical-align: top;margin-top: -7px;"></i> -->
+                    <p style="font-weight:700;margin-bottom: 20px;font-family: Lato, sans-serif;font-size: 20px;text-align:left;display:inline-block">Slack recipients</p>
+                    <a style="color:black" href="{{url_for('add_slack_members',user=user,msg='false')}}"><p id="yeet-9" style="margin-bottom:20px;display:inline-block;width:37px;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;margin-left:10px">Add</p></a>
+                </div>
+                <hr style="margin-top: 0px;"></hr>
+
+                <div id="slack-users"></div>
+
+
+          <!--       <div id="friend" style="border-radius:5px 5px 5px 5px;float: left;padding-right: 10px;width: 200px;"><img  src="https://firebasestorage.googleapis.com/v0/b/getlex-5b86d.appspot.com/o/integrate%2Ffiller_profile_pic.jpg?alt=media&token=2c07e46e-1b56-42a5-8ee4-fa45c923a7b4" style="object-fit: cover;margin-left:5px;width: 30px;height: 30px;line-height: 30px;cursor: pointer;border-radius: 5px;display: inline-block;"><p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"><strong>{}</strong></p><p style="font-family: Lato, sans-serif;vertical-align: middle;display: inline-block;margin-top: 15px;margin-left: 10px;"></p><i id="click1" onclick="onOff(event)" class="fa fa-toggle-on" style="float:right;cursor:pointer;color: #03a87c;font-size: 35px;margin-bottom: 5px;vertical-align: top;margin-top: 5px;"></i></div>
+ -->
+
+                <a style="color:black" href="{{ url_for('step1',user=user) }}">
+                    <div id="integrate" style="display:none;margin: auto;width: 260px;background-color: #ffffff;padding-top: 20px;border-radius: 10px 10px 10px 10px;border: 2px solid;height: 70px;cursor: pointer;">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/getlex-5b86d.appspot.com/o/integrate%2Fslack_icon.png?alt=media&token=7843d60c-6f11-4376-858e-e00d59262394" style="object-fit: cover;width: 50px;height: 50px;line-height: 30px;border-radius: 5px;display: inline-block;margin: auto;border: 0px solid #03a87c;cursor: auto !important;margin-top: -12px;margin-left: 10px;">
+                        <p
+                        style="margin-bottom: 0px;font-family: Lato, sans-serif;font-size: 25px;display: inline-block;margin-left: auto;margin-right: auto;text-align: center;margin-left: 10px;"><strong>Integrate Slack</strong></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 100%;">
+            <div class="col-6" style="height: 100%;padding-right: 0px !important;padding-left: 0px !important;">
+                <div style="height: 184px;"></div>
+                <div>
+<!--                     <i id="cancel" onclick="cancelSend(event)" class="la la-remove" style="cursor:pointer;color: #a82103;font-size: 25px;margin-left: -50px;vertical-align: top;margin-top: -7px;"></i> -->
+                    <p style="font-weight:700;margin-bottom: 20px;font-family: Lato, sans-serif;font-size: 20px;text-align:left;display:inline-block;">Lex recipients</p>
+                    <a style="color:black" href="{{url_for('search',user=user)}}"><p id="yeet-9" style="margin-bottom:20px;display:inline-block;width:37px;padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 2px;font-family: Lato, sans-serif;background-color: #03a87c;color: white;border: 1px solid #03a87c;border-radius: 5px 5px 5px 5px;font-size: 13px;cursor: pointer;margin-left:10px">Add</p></a>
+                </div>
+                <hr style="margin-top: 0px;"></hr>
+
+                <div id="send-users"></div>
+                <div id="lex" style="display:none;cursor: pointer;margin-top: 10px;margin-bottom: 10px;margin-right: 65px;">
+                    <div style="float: left;"><img src="https://firebasestorage.googleapis.com/v0/b/getlex-5b86d.appspot.com/o/profile%2FJJ5TaGwnn5cbRzfTdP04S5gPj8y1?alt=media&token=/tmp/Selection_378.png" style="object-fit: cover;width: 50px;height: 50px;line-height: 30px;cursor: pointer;border-radius: 5px;"></div>
+                    <div style="display: inline-block;padding-left: 10px;">
+                        <p style="margin-bottom: 2px;font-family: Lato, sans-serif;margin-top: 3px;"><strong>Lex</strong></p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">Reply rate:</p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">Upvote rate:</p>
+                    </div>
+                    <div style="display: inline-block;padding-left: 5px;">
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">100%</p>
+                        <p style="max-width: 600px;font-weight: 400;line-height: 16px;font-family: Lato, sans-serif;margin-bottom: 0px;">100%</p>
+                    </div><i id="click1" onclick="onOff(event)" class="fa fa-toggle-on" style="color: #03a87c;font-size: 35px;margin-left: 18px;margin-bottom: 5px;vertical-align: top;margin-top: 7px;"></i>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <form method="post" id="form-submit">
+        <input id="final-list" name="finallist" value="{{tmplist}}" style="display:none">
+        <input id="slack-list" name="slacklist" value="{{slacklist}}" style="display:none">
+    </form>
+
+
+    <style>
+        #yeet-10:hover{
+            background-color:#9c1f03 !important;
+            border-color:#9c1f03 !important;
+        }
+
+        #integrate:hover{
+            background-color:#f7f7f7 !important;
+        }
+
+        .friend:hover{
+            background-color: #f7f7f7 !important;
+        }
+    </style>
+
+    <script>
+        function html_unescape(s) {
+            var div = document.createElement("div");
+            div.innerHTML = s;
+            document.getElementById('send-users').innerHTML = div.textContent || div.innerText; // IE is different
+        }
+
+        function html_unescape_slack(s) {
+            var div = document.createElement("div");
+            div.innerHTML = s;
+            document.getElementById('slack-users').innerHTML = div.textContent || div.innerText; // IE is different
+        }
+
+        function didLexSend(x){
+            if (x == '1'){
+                document.getElementById('lex').style.display = "inline-block";
+            }
+        }
+
+        if ('{{integrate}}' == 'true'){
+            document.getElementById('integrate').style.display = "block";
+        }
+
+        html_unescape('{{send_users}}');
+        html_unescape_slack('{{slack_users}}');
+        didLexSend('{{lex}}')
+
+        function formSubmit(){
+            document.getElementById('form-submit').submit();
+        }
+
+        function onOff(event){
+            if (document.getElementById(event.target.id).className == "fa fa-toggle-on"){
+                // console.log(document.getElementById('final-list').value)
+                document.getElementById('final-list').value = document.getElementById('final-list').value.replace(event.target.id,"");
+                document.getElementById(event.target.id).className = "fa fa-toggle-off";
+            }
+            else{
+                document.getElementById('final-list').value = document.getElementById('final-list').value + event.target.id + " ";
+                document.getElementById(event.target.id).className = "fa fa-toggle-on";
+            }
+        }
+
+        function onOffSlack(event){
+            console.log(event.target.id);
+            if (document.getElementById(event.target.id).className == "fa fa-toggle-on"){
+                document.getElementById('slack-list').value = document.getElementById('slack-list').value.replace(event.target.id,"");
+                document.getElementById(event.target.id).className = "fa fa-toggle-off";
+            }
+            else{
+                document.getElementById('slack-list').value = document.getElementById('slack-list').value + "|||" + event.target.id;
+                document.getElementById(event.target.id).className = "fa fa-toggle-on";
+            }
+        }
+
+    </script>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/mrkdwn.js') }}"></script>
+</body>
+
+</html>
