@@ -1,10 +1,6 @@
-# Files for [Lex](https://getlex-5b86d.appspot.com/create), a platform for Daily Updates
+# [Lex](https://getlex-5b86d.appspot.com/create) - a platform for daily updates
 Backend: Flask
-
 DB: firebase
-
-Handling data: vanilla js
-
 Hosted: google cloud
 
 Some of the packages in the requirements.txt are not essential, will clean up later.
