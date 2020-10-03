@@ -1,4 +1,4 @@
-# [Lex](https://getlex-5b86d.appspot.com/create) - a platform for daily updates
+# [Lex](http://getlex.ca/create) - a platform for daily updates
 Backend: Flask
 
 DB: firebase
