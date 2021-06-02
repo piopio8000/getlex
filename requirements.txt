@@ -59,7 +59,7 @@ six==1.12.0
 soupsieve==1.9.5
 static-parameters==0.4
 tika==1.22
-urllib3==1.25.7
+urllib3==1.26.5
 watson-developer-cloud==2.10.1
 websocket-client==0.48.0
 Werkzeug==0.16.0
